@@ -21,11 +21,11 @@ from fill_tracker import fill_tracker_list
 def run():
     # Initialize the parameters
     conf_threshold = 0.46  # Confidence threshold
-    nms_threshold = 0.6  # Non-maximum suppression threshold
+    nms_threshold = 0.66  # Non-maximum suppression threshold
     inp_width = 416  # Width of network's input image 416 - default for yolo
     inp_height = 416  # Height of network's input image 416 - default for yolo
     skip_frames = 0  # No. of frames skipped for next detection
-    write_output = True
+    write_output = False
     # construct the argument parse and parse the arguments
     parser = argparse.ArgumentParser(description='Object Detection and Tracking using YOLO in OPENCV')
     parser.add_argument("-s", "--skip_frames", type=int, default=30,
@@ -217,9 +217,9 @@ def run():
                 # us in which direction the object is moving (negative for
                 # 'up' and positive for 'down')
                 y = [c[1] for c in to.centroids]
-                x_ = [c[0] for c in to.centroids]
+                # x_ = [c[0] for c in to.centroids]
                 direction = centroid[1] - np.mean(y[:-2])
-                direction_x = centroid[0]
+                # direction_x = centroid[0]
                 to.centroids.append(centroid)
 
                 # check to see if the object has been counted or not
@@ -236,8 +236,6 @@ def run():
                             and 160 < centroid[1] < 265 and max(y) > 210:  # or mark your custom x and y val
                         print(objectID, " ID")
                         print(direction, " Direction  ", centroid[1], " centroid")
-                        print(max(y))
-                        print(centroid[1], ' ', centroid[0])
                         print("exit")
                         print("############")
                         total_up += 1
@@ -252,8 +250,6 @@ def run():
                             and 130 < centroid[1] < 300 and min(y) < 400:
                         print(objectID, " ID")
                         print(direction, " Direction  ", centroid[1], " centroid")
-                        print(min(y))
-                        print(centroid[1], ' ', centroid[0])
                         print("Into")
                         print("############")
                         total_down += 1
@@ -298,7 +294,8 @@ def run():
                 v[0] = 0
             cv2.putText(frame, text, (90, H - ((i * 20) + 30)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
 
-        writer.write(frame)
+        if writer is not None:
+            writer.write(frame)
         cv2.imshow(win_name, cv2.resize(frame, (1600, 900)))
         key = cv2.waitKey(1) & 0xFF
 
