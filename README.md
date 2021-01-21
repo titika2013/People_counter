@@ -1,4 +1,4 @@
-
+> This is an improvement/modification to https://www.pyimagesearch.com/2018/08/13/opencv-people-counter/
 
 Программа подсчета людей работает на основе yolov4 (darknet).
 [yolov4.cfg](https://raw.githubusercontent.com/AlexeyAB/darknet/master/cfg/yolov4.cfg) - 245 MB: [yolov4.weights.](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights)
