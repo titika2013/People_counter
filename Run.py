@@ -1,12 +1,3 @@
-# ------------------------------------------------------------------------------
-# This is an implementation of Head Count in real time in python 3 using
-# Deep Learning Object Detection with YOLO_v4 and
-# Object Tracking to minimize the time cost due to detection( too expensive to
-# be run at each and every frame).
-# Note: This is just a basic implementation and has a lot of scope for
-# improvement.
-# ------------------------------------------------------------------------------
-
 import argparse
 import sys
 import numpy as np
